@@ -1,0 +1,35 @@
+select 
+    player.pos1,
+    player.player,
+    player.pname,
+    count(qb_fantasy_features_table.player) games
+    from player join qb_fantasy_features_table on player.player = qb_fantasy_features_table.player 
+    group by pos1,player.player,pname
+    having games >= 17
+union
+select 
+    player.pos1,
+    player.player,
+    player.pname,
+    count(rb_fantasy_features_table.player) games
+    from player join rb_fantasy_features_table on player.player = rb_fantasy_features_table.player 
+    group by pos1,player.player,pname
+	having games >= 17
+union
+select 
+    player.pos1,
+    player.player,
+    player.pname,
+    count(wr_fantasy_features_table.player) games
+    from player join wr_fantasy_features_table on player.player = wr_fantasy_features_table.player 
+    group by pos1,player.player,pname
+    having games >= 17
+union
+select 
+    player.pos1,
+    player.player,
+    player.pname,
+    count(te_fantasy_features_table.player) games
+    from player join te_fantasy_features_table on player.player = te_fantasy_features_table.player 
+    group by pos1,player.player,pname 
+    having games >= 17
